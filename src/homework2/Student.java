@@ -1,15 +1,14 @@
-package homework;
-
+package homework2;
+import java.util.Scanner;
 
 class Student {
-    long studentId;
+    int studentId;
     String name;
     String major;
-    String phoneNumber;
+    long phoneNumber;
 
     // 생성자
-
-    public Student(long studentId, String name, String major, String phoneNumber) {
+    Student(int studentId, String name, String major, long phoneNumber) {
         this.studentId = studentId;
         this.name = name;
         this.major = major;
@@ -17,12 +16,11 @@ class Student {
     }
 
     // getter & setter
-
-    public long getStudentId() {
+    public int getStudentId() {
         return studentId;
     }
 
-    public void setStudentID(long studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
 
@@ -42,24 +40,61 @@ class Student {
         this.major = major;
     }
 
-    public String getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    // 전화번호 포맷 변경 (010-xxxx-xxxx)
+    // 전화번호를 010-xxxx-xxxx 형태로 변환
     public String getFormattedPhoneNumber() {
-        if (phoneNumber == null || phoneNumber.length() != 11) {
-            return "잘못된 전화번호 입니다.";
+        String numStr = Long.toString(phoneNumber);
+
+        // 자릿수 부족 시 0을 앞에 붙임 (예: 1053559999 → 01053559999)
+        while (numStr.length() < 11) {
+            numStr = "0" + numStr;
         }
 
-            return "010-" + phoneNumber.substring(3, 7) + "-" + phoneNumber.substring(7);
+        String first = numStr.substring(0, 3);
+        String middle = numStr.substring(3, 7);
+        String last = numStr.substring(7);
 
+        return first + "-" + middle + "-" + last;
     }
 }
 
+class Homework2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Student[] students = new Student[3];
 
+        for (int i = 0; i < students.length; i++) {
+            System.out.print("학생의 학번, 이름, 전공, 전화번호를 입력하세요: ");
+            String input = sc.nextLine();
+            String[] info = input.split(" "); // 공백으로 구분
 
+            int studentId = Integer.parseInt(info[0]);
+            String name = info[1];
+            String major = info[2];
+            long phoneNumber = Long.parseLong(info[3]);
+
+            students[i] = new Student(studentId, name, major, phoneNumber);
+        }
+
+        String[] order = {"첫번째", "두번째", "세번째"};
+        System.out.println("입력된 학생들의 정보는 다음과 같습니다.");
+        for (int i = 0; i < students.length; i++) {
+            Student s = students[i];
+            System.out.printf("%s 학생: %d %s %s %s\n",
+                    order[i],
+                    s.getStudentId(),
+                    s.getName(),
+                    s.getMajor(),
+                    s.getFormattedPhoneNumber()
+            );
+        }
+        sc.close();
+    }
+}
