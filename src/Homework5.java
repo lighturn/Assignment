@@ -18,11 +18,11 @@ class Computer {
     }
 
     public void printInfo() {
-        System.out.println(" CPU: " + this.cpu);
-        System.out.println(" Memory: " + this.memory);
-        System.out.println(" HDD: " + this.hdd);
-        System.out.println(" Color: " + this.color);
-        System.out.println(" Power: " + this.power);
+        System.out.println("CPU: " + this.cpu);
+        System.out.println("Memory: " + this.memory);
+        System.out.println("HDD: " + this.hdd);
+        System.out.println("Color: " + this.color);
+        System.out.println("Power: " + this.power);
     }
 }
 
@@ -42,9 +42,9 @@ class Monitor {
     }
 
     public void printInfo() {
-        System.out.println(" Size: " + this.size);
-        System.out.println(" Color: " + this.color);
-        System.out.println(" Power: " + this.power);
+        System.out.println("Size: " + this.size);
+        System.out.println("Color: " + this.color);
+        System.out.println("Power: " + this.power);
     }
 }
 
